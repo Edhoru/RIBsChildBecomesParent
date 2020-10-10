@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 
 protocol SellerDetailPresentableListener: class {
+    func close()
     func select(product: UIImage)
 }
 
@@ -24,7 +25,21 @@ final class SellerDetailViewController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.text = "Seller:"
+        label.textColor = .white
         return label
+    }()
+    
+    let closeButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 44,
+                                                              weight: .light)
+        let buttonImage = UIImage(systemName: "xmark.circle.fill",
+                                  withConfiguration: symbolConfiguration)?
+            .withTintColor(.white,
+                           renderingMode: .alwaysOriginal)
+        button.setImage(buttonImage, for: .normal)
+        return button
     }()
     
     let productImageView: UIImageView = {
@@ -40,6 +55,7 @@ final class SellerDetailViewController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.text = "Products:"
+        label.textColor = .white
         return label
     }()
     
@@ -58,6 +74,17 @@ final class SellerDetailViewController: UIViewController {
     }()
     
     
+    //MARK: Initialization
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .fullScreen
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,14 +96,16 @@ final class SellerDetailViewController: UIViewController {
     
     //MARK: Setup
     private func setupProperties() {
+        closeButton.addTarget(self, action: #selector(handleCloseTap), for: .touchUpInside)
         button1.addTarget(self, action: #selector(handleButton1Tap), for: .touchUpInside)
         button2.addTarget(self, action: #selector(handleButton2Tap), for: .touchUpInside)
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .darkGray
         
         view.addSubview(titleLabel)
+        view.addSubview(closeButton)
         view.addSubview(productImageView)
         view.addSubview(subtitleLabel)
         view.addSubview(button1)
@@ -86,6 +115,9 @@ final class SellerDetailViewController: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             productImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -112,6 +144,10 @@ final class SellerDetailViewController: UIViewController {
     
     
     //MARK: Actions
+    @objc private func handleCloseTap() {
+        listener?.close()
+    }
+    
     @objc private func handleButton1Tap() {
         listener?.select(product: #imageLiteral(resourceName: "hat_1"))
     }

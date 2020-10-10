@@ -10,6 +10,7 @@ import RxSwift
 
 protocol SellerDetailRouting: ViewableRouting {
     func route(to product: UIImage)
+    func routeOutChild()
 }
 
 protocol SellerDetailPresentable: Presentable {
@@ -19,7 +20,7 @@ protocol SellerDetailPresentable: Presentable {
 }
 
 protocol SellerDetailListener: class {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func closeSeller()
 }
 
 final class SellerDetailInteractor: PresentableInteractor<SellerDetailPresentable> {
@@ -58,10 +59,17 @@ final class SellerDetailInteractor: PresentableInteractor<SellerDetailPresentabl
 
 extension SellerDetailInteractor: SellerDetailInteractable {
     
+    func closeProduct() {
+        router?.routeOutChild()
+    }
 }
 
 
 extension SellerDetailInteractor: SellerDetailPresentableListener {
+    
+    func close() {
+        listener?.closeSeller()
+    }
     
     func select(product: UIImage) {
         router?.route(to: product)

@@ -20,7 +20,7 @@ protocol ProductDetailPresentable: Presentable {
 }
 
 protocol ProductDetailListener: class {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func closeProduct()
 }
 
 final class ProductDetailInteractor: PresentableInteractor<ProductDetailPresentable> {
@@ -59,9 +59,17 @@ final class ProductDetailInteractor: PresentableInteractor<ProductDetailPresenta
 //MARK: RIBs
 extension ProductDetailInteractor: ProductDetailInteractable {
     
+    func closeSeller() {
+        router?.routeOutChild()
+    }
+    
 }
 
 extension ProductDetailInteractor: ProductDetailPresentableListener {
+    
+    func close() {
+        listener?.closeProduct()
+    }
     
     func select(seller: UIImage) {
         router?.route(to: seller)

@@ -49,6 +49,10 @@ final class RootInteractor: PresentableInteractor<RootPresentable> {
 //MARK: RIBs
 extension RootInteractor: RootInteractable {
     
+    func closeProduct() {
+        router?.routeOutChild()
+    }
+    
 }
 
 extension RootInteractor: RootPresentableListener {
