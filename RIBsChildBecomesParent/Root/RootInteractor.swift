@@ -9,7 +9,7 @@ import RIBs
 import RxSwift
 
 protocol RootRouting: ViewableRouting {
-    func route(to product: UIImage)
+    func route(to hat: UIImage)
     func routeOutChild()
 }
 
@@ -49,7 +49,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable> {
 //MARK: RIBs
 extension RootInteractor: RootInteractable {
     
-    func closeProduct() {
+    func closeHat() {
         router?.routeOutChild()
     }
     
@@ -57,8 +57,8 @@ extension RootInteractor: RootInteractable {
 
 extension RootInteractor: RootPresentableListener {
     
-    func select(product: UIImage) {
-        router?.route(to: product)
+    func select(hat: UIImage) {
+        router?.route(to: hat)
     }
     
 }

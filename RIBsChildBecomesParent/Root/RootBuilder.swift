@@ -12,7 +12,7 @@ protocol RootDependency: Dependency {
     // created by this RIB.
 }
 
-final class RootComponent: Component<RootDependency>, ProductDetailDependency {
+final class RootComponent: Component<RootDependency>, HatDetailDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -34,9 +34,9 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         let viewController = RootViewController()
         let interactor = RootInteractor(presenter: viewController)
         
-        let productDetailBuilder = ProductDetailBuilder(dependency: component)
+        let hatDetailBuilder = HatDetailBuilder(dependency: component)
         return RootRouter(interactor: interactor,
                           viewController: viewController,
-                          productDetailBuilder: productDetailBuilder)
+                          hatDetailBuilder: hatDetailBuilder)
     }
 }

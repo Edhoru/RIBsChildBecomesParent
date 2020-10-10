@@ -10,7 +10,7 @@ import RxSwift
 import UIKit
 
 protocol RootPresentableListener: class {
-    func select(product: UIImage)
+    func select(hat: UIImage)
 }
 
 final class RootViewController: UIViewController {
@@ -25,15 +25,20 @@ final class RootViewController: UIViewController {
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.text = """
-This project presents a common scenario of apps that present a list of products and a list of sellers for those products.
+This project presents a common scenario of apps that present a list of objects to select and see it's details (Think of these as products), from the details screen you can see a list of other objects (let's think about those as sellers) to pick from, from the seller's details you see a list of all the producs (type 1) they sell, and so on.
 
 Flow:
-1. From this Root RIBs pick a product to open the child RIB called 'Product'\n
-2. From the 'Product' RIB, you can see a list of sellers that offer this product\n
-3. When you pick a seller you open the 'Seller' RIB as a child of 'Product', this RIB display all the products the seller sells.\n
-4. From that list you can pick a product and open the 'Product' RIB now as a child of 'Seller'
+1. From this Root RIBs pick a hat to open the child RIB called 'Hat'
 
-This behavior can continue for ever, since the mock data has 2 sellers (pumpkins) and both sell the same 2 hats. Is this the right way to handle this scenario?
+2. From the 'Hat' RIB, you can see a list of pumpkins that can wear this hat
+
+3. When you pick a pumpkin you open the 'Pumpkin' RIB as a child of 'Hat', this RIB display all the hats the pumpkin can wear.
+
+4. From that list of hats you can pick a hat and open the 'Hat' RIB now as a child of 'Pumpkin'
+
+This behavior can continue for ever, since the mock data has 2 pumpkins (pumpkins) and both can wear the same 2 hats. Is this the right way to handle this scenario?
+
+Thanks
 """
         return label
     }()
@@ -98,11 +103,11 @@ This behavior can continue for ever, since the mock data has 2 sellers (pumpkins
     
     //MARK: Actions
     @objc private func handleButton1Tap() {
-        listener?.select(product: #imageLiteral(resourceName: "hat_1"))
+        listener?.select(hat: #imageLiteral(resourceName: "hat_1"))
     }
     
     @objc private func handleButton2Tap() {
-        listener?.select(product: #imageLiteral(resourceName: "hat_2"))
+        listener?.select(hat: #imageLiteral(resourceName: "hat_2"))
     }
     
 }

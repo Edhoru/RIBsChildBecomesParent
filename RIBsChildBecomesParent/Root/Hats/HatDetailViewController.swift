@@ -1,5 +1,5 @@
 //
-//  ProductViewController.swift
+//  HatViewController.swift
 //  RIBsChildBecomesParent
 //
 //  Created by Alberto Huerdo on 10/9/20.
@@ -9,15 +9,15 @@ import RIBs
 import RxSwift
 import UIKit
 
-protocol ProductDetailPresentableListener: class {
+protocol HatDetailPresentableListener: class {
     func close()
-    func select(seller: UIImage)
+    func select(pumpkin: UIImage)
 }
 
-final class ProductDetailViewController: UIViewController {
+final class HatDetailViewController: UIViewController {
     
     //MARK: RIBs
-    weak var listener: ProductDetailPresentableListener?
+    weak var listener: HatDetailPresentableListener?
     
     //MARK: UI
     let titleLabel: UILabel = {
@@ -25,7 +25,7 @@ final class ProductDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Product:"
+        label.text = "Hat:"
         label.textColor = .black
         return label
     }()
@@ -43,7 +43,7 @@ final class ProductDetailViewController: UIViewController {
         return button
     }()
     
-    let productImageView: UIImageView = {
+    let hatImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -55,7 +55,7 @@ final class ProductDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Sellers:"
+        label.text = "Pumpkins:"
         label.textColor = .black
         return label
     }()
@@ -103,43 +103,44 @@ final class ProductDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "hat")
         
         view.addSubview(titleLabel)
-        view.addSubview(closeButton)
-        view.addSubview(productImageView)
+        view.addSubview(hatImageView)
         view.addSubview(subtitleLabel)
         view.addSubview(button1)
         view.addSubview(button2)
+        view.addSubview(closeButton)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            hatImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 1),
+            hatImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            hatImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            hatImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            productImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            productImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            
-            subtitleLabel.topAnchor.constraint(greaterThanOrEqualTo: productImageView.bottomAnchor, constant: 16),
+            subtitleLabel.topAnchor.constraint(equalTo: hatImageView.bottomAnchor, constant: 16),
             subtitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             subtitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             button1.heightAnchor.constraint(equalTo: button1.widthAnchor),
             button1.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             button1.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            button1.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             button2.heightAnchor.constraint(equalTo: button2.widthAnchor),
             button2.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             button2.leadingAnchor.constraint(equalTo: button1.trailingAnchor, constant: 16),
             button2.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            button2.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
-            button1.widthAnchor.constraint(equalTo: button2.widthAnchor)
+            button1.widthAnchor.constraint(equalTo: button2.widthAnchor),
+            
+            closeButton.topAnchor.constraint(equalTo: button1.bottomAnchor, constant: 32),
+            closeButton.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 32),
+            closeButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            closeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
     }
     
@@ -150,25 +151,25 @@ final class ProductDetailViewController: UIViewController {
     }
     
     @objc private func handleButton1Tap() {
-        listener?.select(seller: #imageLiteral(resourceName: "pumpkin_1"))
+        listener?.select(pumpkin: #imageLiteral(resourceName: "pumpkin_1"))
     }
     
     @objc private func handleButton2Tap() {
-        listener?.select(seller: #imageLiteral(resourceName: "pumpkin_2"))
+        listener?.select(pumpkin: #imageLiteral(resourceName: "pumpkin_2"))
     }
 }
 
 
 //MARK: RIBs
-extension ProductDetailViewController: ProductDetailPresentable {
+extension HatDetailViewController: HatDetailPresentable {
     
-    func display(product: UIImage) {
-        productImageView.image = product
+    func display(hat: UIImage) {
+        hatImageView.image = hat
     }
     
 }
 
-extension ProductDetailViewController: ProductDetailViewControllable {
+extension HatDetailViewController: HatDetailViewControllable {
     
     func present(viewController: ViewControllable) {
         present(viewController.uiviewController, animated: true)

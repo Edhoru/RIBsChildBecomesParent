@@ -1,5 +1,5 @@
 //
-//  SellerDetailViewController.swift
+//  PumpkinDetailViewController.swift
 //  RIBsChildBecomesParent
 //
 //  Created by Alberto Huerdo on 10/9/20.
@@ -9,14 +9,14 @@ import RIBs
 import RxSwift
 import UIKit
 
-protocol SellerDetailPresentableListener: class {
+protocol PumpkinDetailPresentableListener: class {
     func close()
-    func select(product: UIImage)
+    func select(hat: UIImage)
 }
 
-final class SellerDetailViewController: UIViewController {
+final class PumpkinDetailViewController: UIViewController {
 
-    weak var listener: SellerDetailPresentableListener?
+    weak var listener: PumpkinDetailPresentableListener?
     
     //MARK: UI
     let titleLabel: UILabel = {
@@ -24,8 +24,8 @@ final class SellerDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Seller:"
-        label.textColor = .white
+        label.text = "Pumpkin:"
+        label.textColor = .black
         return label
     }()
     
@@ -36,13 +36,13 @@ final class SellerDetailViewController: UIViewController {
                                                               weight: .light)
         let buttonImage = UIImage(systemName: "xmark.circle.fill",
                                   withConfiguration: symbolConfiguration)?
-            .withTintColor(.white,
+            .withTintColor(.black,
                            renderingMode: .alwaysOriginal)
         button.setImage(buttonImage, for: .normal)
         return button
     }()
     
-    let productImageView: UIImageView = {
+    let pumpkinImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -54,8 +54,8 @@ final class SellerDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Products:"
-        label.textColor = .white
+        label.text = "Hats:"
+        label.textColor = .black
         return label
     }()
     
@@ -102,43 +102,44 @@ final class SellerDetailViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .darkGray
+        view.backgroundColor = UIColor(named: "pumpkin")
         
         view.addSubview(titleLabel)
-        view.addSubview(closeButton)
-        view.addSubview(productImageView)
+        view.addSubview(pumpkinImageView)
         view.addSubview(subtitleLabel)
         view.addSubview(button1)
         view.addSubview(button2)
+        view.addSubview(closeButton)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            pumpkinImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 1),
+            pumpkinImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            pumpkinImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            pumpkinImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            productImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            productImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            
-            subtitleLabel.topAnchor.constraint(greaterThanOrEqualTo: productImageView.bottomAnchor, constant: 16),
+            subtitleLabel.topAnchor.constraint(equalTo: pumpkinImageView.bottomAnchor, constant: 16),
             subtitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             subtitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             button1.heightAnchor.constraint(equalTo: button1.widthAnchor),
             button1.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             button1.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            button1.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             button2.heightAnchor.constraint(equalTo: button2.widthAnchor),
             button2.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             button2.leadingAnchor.constraint(equalTo: button1.trailingAnchor, constant: 16),
             button2.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            button2.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
-            button1.widthAnchor.constraint(equalTo: button2.widthAnchor)
+            button1.widthAnchor.constraint(equalTo: button2.widthAnchor),
+            
+            closeButton.topAnchor.constraint(equalTo: button1.bottomAnchor, constant: 32),
+            closeButton.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 32),
+            closeButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            closeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
     }
     
@@ -149,11 +150,11 @@ final class SellerDetailViewController: UIViewController {
     }
     
     @objc private func handleButton1Tap() {
-        listener?.select(product: #imageLiteral(resourceName: "hat_1"))
+        listener?.select(hat: #imageLiteral(resourceName: "hat_1"))
     }
     
     @objc private func handleButton2Tap() {
-        listener?.select(product: #imageLiteral(resourceName: "hat_2"))
+        listener?.select(hat: #imageLiteral(resourceName: "hat_2"))
     }
 }
 
@@ -161,16 +162,16 @@ final class SellerDetailViewController: UIViewController {
 
 //MARK: RIBs
 
-extension SellerDetailViewController: SellerDetailPresentable {
+extension PumpkinDetailViewController: PumpkinDetailPresentable {
     
-    func display(seller: UIImage) {
-        productImageView.image = seller
+    func display(pumpkin: UIImage) {
+        pumpkinImageView.image = pumpkin
     }
     
 }
 
 
-extension SellerDetailViewController: SellerDetailViewControllable {
+extension PumpkinDetailViewController: PumpkinDetailViewControllable {
     
     func present(viewController: ViewControllable) {
         present(viewController.uiviewController, animated: true)

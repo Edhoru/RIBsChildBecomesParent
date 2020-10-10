@@ -1,49 +1,42 @@
 //
-//  RootRouter.swift
-//  Roomi
+//  PumpkinDetailRouter.swift
+//  RIBsChildBecomesParent
 //
-//  Created by Alberto Huerdo on 10/4/20.
+//  Created by Alberto Huerdo on 10/9/20.
 //
 
 import RIBs
 
-protocol RootInteractable: Interactable, HatDetailListener {
-    var router: RootRouting? { get set }
-    var listener: RootListener? { get set }
+protocol PumpkinDetailInteractable: Interactable, HatDetailListener {
+    var router: PumpkinDetailRouting? { get set }
+    var listener: PumpkinDetailListener? { get set }
 }
 
-protocol RootViewControllable: ViewControllable {
+protocol PumpkinDetailViewControllable: ViewControllable {
     func present(viewController: ViewControllable)
     func dismiss(viewController: ViewControllable)
 }
 
-final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable> {
+final class PumpkinDetailRouter: ViewableRouter<PumpkinDetailInteractable, PumpkinDetailViewControllable> {
     
     private let hatDetailBuilder: HatDetailBuildable
     private var currentChild: ViewableRouting?
-    
-    
-    init(interactor: RootInteractable,
-         viewController: RootViewControllable,
+
+    // TODO: Constructor inject child builder protocols to allow building children.
+    init(interactor: PumpkinDetailInteractable,
+         viewController: PumpkinDetailViewControllable,
          hatDetailBuilder: HatDetailBuildable) {
         self.hatDetailBuilder = hatDetailBuilder
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
-    
-    override func didLoad() {
-        super.didLoad()
-    }
-    
-    private var loggedOut: ViewableRouting?
-    
 }
 
 
 //MARK: RIBs
 
-extension RootRouter: RootRouting {
+extension PumpkinDetailRouter: PumpkinDetailRouting {
     
     func route(to hat: UIImage) {
         let hatDetail = hatDetailBuilder.build(withListener: interactor,
