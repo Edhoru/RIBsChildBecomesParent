@@ -3,24 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		46088207253157FA004E017C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46088206253157FA004E017C /* AppDelegate.swift */; };
 		46088209253157FA004E017C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46088208253157FA004E017C /* SceneDelegate.swift */; };
 		4608820B253157FA004E017C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4608820A253157FA004E017C /* ViewController.swift */; };
-		4608820E253157FA004E017C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4608820C253157FA004E017C /* Main.storyboard */; };
 		46088210253157FB004E017C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4608820F253157FB004E017C /* Assets.xcassets */; };
 		46088213253157FB004E017C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46088211253157FB004E017C /* LaunchScreen.storyboard */; };
+		677B2BACE7B26717F7F6319B /* Pods_RIBsChildBecomesParent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1FBEE51B23889D555FF3EA /* Pods_RIBsChildBecomesParent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		029716E668C05F6C99D4EDA1 /* Pods-RIBsChildBecomesParent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIBsChildBecomesParent.release.xcconfig"; path = "Target Support Files/Pods-RIBsChildBecomesParent/Pods-RIBsChildBecomesParent.release.xcconfig"; sourceTree = "<group>"; };
+		1C1FBEE51B23889D555FF3EA /* Pods_RIBsChildBecomesParent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIBsChildBecomesParent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		405C1E240AA59F3EBD5B952F /* Pods-RIBsChildBecomesParent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIBsChildBecomesParent.debug.xcconfig"; path = "Target Support Files/Pods-RIBsChildBecomesParent/Pods-RIBsChildBecomesParent.debug.xcconfig"; sourceTree = "<group>"; };
 		46088203253157FA004E017C /* RIBsChildBecomesParent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RIBsChildBecomesParent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46088206253157FA004E017C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46088208253157FA004E017C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4608820A253157FA004E017C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4608820D253157FA004E017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4608820F253157FB004E017C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46088212253157FB004E017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46088214253157FB004E017C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				677B2BACE7B26717F7F6319B /* Pods_RIBsChildBecomesParent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,8 @@
 			children = (
 				46088205253157FA004E017C /* RIBsChildBecomesParent */,
 				46088204253157FA004E017C /* Products */,
+				7BACDF2F6DD4A3D99F4CC40F /* Pods */,
+				EFBFC1CD25A46B3D03FDAEDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +64,28 @@
 				46088206253157FA004E017C /* AppDelegate.swift */,
 				46088208253157FA004E017C /* SceneDelegate.swift */,
 				4608820A253157FA004E017C /* ViewController.swift */,
-				4608820C253157FA004E017C /* Main.storyboard */,
 				4608820F253157FB004E017C /* Assets.xcassets */,
 				46088211253157FB004E017C /* LaunchScreen.storyboard */,
 				46088214253157FB004E017C /* Info.plist */,
 			);
 			path = RIBsChildBecomesParent;
+			sourceTree = "<group>";
+		};
+		7BACDF2F6DD4A3D99F4CC40F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				405C1E240AA59F3EBD5B952F /* Pods-RIBsChildBecomesParent.debug.xcconfig */,
+				029716E668C05F6C99D4EDA1 /* Pods-RIBsChildBecomesParent.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EFBFC1CD25A46B3D03FDAEDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C1FBEE51B23889D555FF3EA /* Pods_RIBsChildBecomesParent.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46088217253157FB004E017C /* Build configuration list for PBXNativeTarget "RIBsChildBecomesParent" */;
 			buildPhases = (
+				8B6307C8A4684E9EA39D78E3 /* [CP] Check Pods Manifest.lock */,
 				460881FF253157FA004E017C /* Sources */,
 				46088200253157FA004E017C /* Frameworks */,
 				46088201253157FA004E017C /* Resources */,
+				82833161D51C5AF2B3544A2E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,11 +149,52 @@
 			files = (
 				46088213253157FB004E017C /* LaunchScreen.storyboard in Resources */,
 				46088210253157FB004E017C /* Assets.xcassets in Resources */,
-				4608820E253157FA004E017C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		82833161D51C5AF2B3544A2E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RIBsChildBecomesParent/Pods-RIBsChildBecomesParent-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RIBsChildBecomesParent/Pods-RIBsChildBecomesParent-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RIBsChildBecomesParent/Pods-RIBsChildBecomesParent-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B6307C8A4684E9EA39D78E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RIBsChildBecomesParent-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		460881FF253157FA004E017C /* Sources */ = {
@@ -146,14 +210,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4608820C253157FA004E017C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4608820D253157FA004E017C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		46088211253157FB004E017C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,6 +339,7 @@
 		};
 		46088218253157FB004E017C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 405C1E240AA59F3EBD5B952F /* Pods-RIBsChildBecomesParent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +359,7 @@
 		};
 		46088219253157FB004E017C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 029716E668C05F6C99D4EDA1 /* Pods-RIBsChildBecomesParent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
