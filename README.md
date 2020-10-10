@@ -11,3 +11,5 @@ Flow:
 4. From that list of hats you can pick a hat and open the 'Hat' RIB now as a child of 'Pumpkin'
 
 This behavior can continue for ever, since the mock data has 2 pumpkins (pumpkins) and both can wear the same 2 hats. Is this the right way to handle this scenario?
+
+![alt text](https://github.com/Edhoru/RIBsChildBecomesParent/blob/main/images/flow.gif)
